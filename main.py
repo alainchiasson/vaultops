@@ -26,27 +26,9 @@ if __name__ == '__main__':
     result = vops.init_node(name)
     print("Result: ", result)
 
-    #client = hvac.Client(url=node['address'])
-    #result = client.sys.initialize(5,3)
-
-    # Add the result to the cred list
-    # creds = vops.creds
-    # creds.add_cred_from_result(name, result)
-    # print("Creds: ", creds.creds)
-
-    # Link the node to the cred
-    # nodes.nodes[name]['creds'] = "localhost"
-
     print("Nodes: ", nodes.nodes)
 
     vops.write()
-
-    cred_link = nodes.get_node(name)['creds']
-    print(cred_link)
-    cred = vops.creds.get_cred(cred_link)
-    print(cred)
-    print(cred['keys'])
-
 
     response = vops.unseal_node(name)
     #response = client.sys.submit_unseal_keys(cred['keys'])
