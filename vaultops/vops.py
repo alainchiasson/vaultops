@@ -28,7 +28,7 @@ class _Vops():
         result = client.sys.initialize(5,3)
 
         # Create a new credential store
-        self.creds.add_cred_from_result(name, result)
+        self.creds.add_from_result(name, result)
 
         # Create a "soft link" between the node and the credential
         self.nodes.nodes[name]['creds'] = name
@@ -38,8 +38,8 @@ class _Vops():
     def unseal_node(self, name):
         """Unseal a node"""
         node = self.nodes.get(name)
-        cred_link = node['creds']
-        cred = self.creds.get_cred(cred_link)
+        node_cred = node['creds']
+        cred = self.creds.get(node_cred)
         client = hvac.Client(url=node['address'])
         response = client.sys.submit_unseal_keys(cred['keys'])
         return response

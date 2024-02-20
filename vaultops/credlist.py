@@ -18,7 +18,7 @@ class _Creds(dict):
         with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), cred_file), 'w') as json_config_file:
             json.dump(self.creds, json_config_file)
 
-    def add_cred_from_result(self, name, results):
+    def add_from_result(self, name, results):
         """Add a cred to the list"""
         self.creds[name] = results
 
@@ -31,7 +31,7 @@ class _Creds(dict):
         
         self.creds[name] = new_cred
 
-    def get_cred(self, name):
+    def get(self, name):
         """Get a cred from the list"""
         # I sould really return a cred object here.
         return self.creds[name]
