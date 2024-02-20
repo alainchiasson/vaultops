@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 import hvac
-from vaultops.config_loader import config
-from vaultops.nodelist import nodes
-from vaultops.credlist import creds
+from vaultops.vops import vops
 
 if __name__ == '__main__':
 
     # Starting point
-    print("Config: ", config.config)
-    print("Nodes: ", nodes.nodes)
-    print("Creds: ", creds.creds)
+    print("Config: ", vops.config)
+    print("Nodes: ", vops.nodes)
+    print("Creds: ", vops.creds)
 
     # get variables
     name = "localhost"
 
-    # add a vault nodes
+    # add a vault nodes - refactor after
+
+    nodes = vops.nodes
     nodes.add_node(name, "http://localhost:8200")
     print("Nodes: ", nodes.nodes)
 
@@ -27,6 +27,7 @@ if __name__ == '__main__':
     result = client.sys.initialize(5,3)
 
     # Add the result to the cred list
+    creds = vops.creds
     creds.add_cred_from_result(name, result)
     print("Creds: ", creds.creds)
 

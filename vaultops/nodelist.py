@@ -12,14 +12,6 @@ class _Nodes(dict):
         with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), node_file)) as json_config_file:
             loaded_conf = json.load(json_config_file)
         
-        # to refresh older entries. (note: how to do new entries)
-        for node in loaded_conf:
-            self.add_node(node, loaded_conf[node]['address'])
-
-        # write back the refreshed version.
-        self.write_nodelist()
-
-
     def write_nodelist(self, node_file="node_config.json"):
         """Write the nodes to the config file"""
         with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), node_file), 'w') as json_config_file:
