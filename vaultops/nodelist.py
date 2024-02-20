@@ -17,7 +17,7 @@ class _Nodes(dict):
         with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), node_file), 'w') as json_config_file:
             json.dump(self.nodes, json_config_file)
 
-    def add_node(self, name, address):
+    def add(self, name, address):
         """Add a node to the list"""
         # TODO: Verify if node exists, if so error out.
         # TODO: Should take NODE object.
@@ -29,7 +29,7 @@ class _Nodes(dict):
         
         self.nodes[name] = new_node
 
-    def get_node(self, name):
+    def get(self, name):
         """Get a node from the list"""
         # I sould really return a Node object here.
         return self.nodes[name]
