@@ -1,10 +1,20 @@
 # #!/usr/bin/env python3
 import hvac
+
 from vaultops.config_loader import config
 from vaultops.nodelist import nodes
 from vaultops.credlist import creds
 
 class _Vops():
+    """
+    Vault operations class
+    This class is a high level operations around the Vault API class, to help manipulate and manage multiple vault systems.
+    
+    It has classes to help manage the node end point, the credentials associated with them. As well as manage some stadard node 
+    operations like initialisation, unsealing and credential management.
+
+    These are ultimatly to be placed either in a vault, or locally encrypted with a DEK-KEK key set.
+    """
     def __init__(self):
         """Create the Nodes object"""
         self.config = config
